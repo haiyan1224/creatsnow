@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img id="demo" src="demo.jpg" alt="snowy landscape">
+<!-- for test only -->
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<!-- If you add scripts before closing body tag, it will not prevent page
+from rendering, thus making your website load faster -->
+<script src="jsized.snow.min.js" type="text/javascript"></script>        
+<script>
+   // createSnow('', 60);
+	
+		var hasSnow = true;
+        var lastTime = new Date('2019/12/26 00:00:00');//过了圣诞,方法不再调用，这里注意：1.日期ios识别'/',不识别'-'，android 都识别;
+        if(new Date()>lastTime){
+            hasSnow =false;
+        }
+        if(hasSnow){
+            //雪花
+            createSnow('', 60);
+            var begin = new Date();
+            var a = setInterval(function () {
+                var end = new Date();
+                if (end.getTime() - begin.getTime() > 25000) {//25秒后雪花不再继续往下飘；注意这里的时间是getTime,不是getseconds()
+                    removeSnow();//雪花不再飘的方法
+                    clearInterval(a);
+                }
+            }, 1000);
+        }
+</script>
+
+</body>
+</html>
